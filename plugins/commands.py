@@ -173,18 +173,13 @@ async def start(client: Client, message):
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
-        m = await message.reply_sticker(
-            "CAACAgUAAx0CZz_GMwACMBdnXZA4SejgJ6a_0TrNzOfn9ImI_QACNwsAArT4iFVaZPJf8ldVVh4E"
-        )
-        await asyncio.sleep(1)
-        await m.delete()
-        await message.reply_photo(
-            photo=random.choice(START_IMG),
-            caption=script.START_TXT.format(
+        await message.reply_text(
+            text=script.START_TXT.format(
                 message.from_user.mention, get_status(), message.from_user.id
             ),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML,
+            disable_web_page_preview=True
         )
         return
     if len(message.command) == 2 and message.command[1] in [
@@ -215,13 +210,13 @@ async def start(client: Client, message):
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
-        return await message.reply_photo(
-            photo=START_IMG,
-            caption=script.START_TXT.format(
+        return await message.reply_text(
+            text=script.START_TXT.format(
                 message.from_user.mention, get_status(), message.from_user.id
             ),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML,
+            disable_web_page_preview=True
         )
     if len(message.command) == 2 and message.command[1].startswith("reff_"):
         try:
