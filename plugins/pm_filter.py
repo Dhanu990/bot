@@ -1324,15 +1324,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_media(
-            media=InputMediaPhoto(
-                media=random.choice(START_IMG),
-                caption=script.START_TXT.format(
-                    query.from_user.mention, get_status(), query.from_user.id
-                ),
-                parse_mode=enums.ParseMode.HTML,
+        await query.message.edit_text(
+            text=script.START_TXT.format(
+                query.from_user.mention, get_status(), query.from_user.id
             ),
             reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML,
+            disable_web_page_preview=True
         )
     #        await query.message.edit_text(
     #            text=script.START_TXT.format(query.from_user.mention, get_status(), query.from_user.id),
@@ -1497,13 +1495,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
             [InlineKeyboardButton("⋞ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ", callback_data="start")],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_media(
-            media=InputMediaPhoto(
-                media=random.choice(START_IMG),
-                caption=script.HELP_TXT,
-                parse_mode=enums.ParseMode.HTML,
-            ),
+        await query.message.edit_text(
+            text=script.HELP_TXT,
             reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML,
+            disable_web_page_preview=True
         )
 
     elif query.data == "about":
